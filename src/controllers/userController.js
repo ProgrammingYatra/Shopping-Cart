@@ -4,7 +4,7 @@ const aws = require("../Aws/aws.js");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-const createUser = async function (req, res) {
+exports.createUser = async function (req, res) {
   try {
     let data = req.body;
     let { fname, lname, email, password, phone, address } = data;
@@ -149,7 +149,7 @@ const createUser = async function (req, res) {
   }
 };
 
-const loginUser = async function (req, res) {
+exports.loginUser = async function (req, res) {
   try {
     let data = req.body;
     if (validation.isValidBody(data))
@@ -195,7 +195,7 @@ const loginUser = async function (req, res) {
   }
 };
 
-const getUser = async (req, res) => {
+exports.getUser = async (req, res) => {
   try {
     let userId = req.params.userId;
 
@@ -208,7 +208,7 @@ const getUser = async (req, res) => {
   }
 };
 
-const updateUser = async function (req, res) {
+exports.updateUser = async function (req, res) {
   try {
     let data = req.body;
     let files = req.files;
@@ -363,5 +363,3 @@ const updateUser = async function (req, res) {
     res.status(500).send({ status: false, error: err.message });
   }
 };
-
-module.exports = { createUser, loginUser, getUser, updateUser };

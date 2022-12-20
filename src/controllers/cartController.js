@@ -4,7 +4,7 @@ const validation = require("../validation/validator.js")
 
 
 
-const createCart = async function (req, res) {
+exports.createCart = async function (req, res) {
     try {
         let data = req.body
         let userId = req.params.userId
@@ -97,7 +97,7 @@ const createCart = async function (req, res) {
     }
 }
 
-const updateCart = async function (req, res) {
+exports.updateCart = async function (req, res) {
     try {
         const data = req.body
         const cartId = data.cartId
@@ -185,7 +185,7 @@ const updateCart = async function (req, res) {
     }
 }
 
-const getCart = async (req, res) => {
+exports.getCart = async (req, res) => {
     try {
         let userId = req.params.userId;
 
@@ -199,7 +199,7 @@ const getCart = async (req, res) => {
     }
 }
 
-const deleteCart = async (req, res) => {
+exports.deleteCart = async (req, res) => {
     try {
         let userId = req.params.userId;
 
@@ -220,5 +220,3 @@ const deleteCart = async (req, res) => {
         res.status(500).send({ status: false, error: err.message })
     }
 }
-
-module.exports = { createCart, updateCart, getCart, deleteCart }

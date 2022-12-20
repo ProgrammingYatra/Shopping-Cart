@@ -1,10 +1,11 @@
 const orderModel = require("../models/orderModel")
 const cartModel = require("../models/cartModel")
 const validation = require("../validation/validator.js")
+const { SchemaTypeOptions } = require("mongoose")
 
 
 
-const createOrder = async function (req, res) {
+exports.createOrder = async function (req, res) {
     try {
         const data = req.body
         const userId = req.params.userId
@@ -63,7 +64,7 @@ const createOrder = async function (req, res) {
     }
 }
 
-const updateOrder = async function (req, res) {
+exports.updateOrder = async function (req, res) {
     try {
         let orderId = req.body.orderId
         let userId = req.params.userId
@@ -119,4 +120,8 @@ const updateOrder = async function (req, res) {
     }
 }
 
-module.exports = { createOrder, updateOrder }
+const obj={
+    name:"Rupam",
+    age:22
+}
+

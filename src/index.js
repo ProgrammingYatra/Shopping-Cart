@@ -1,23 +1,15 @@
-require("dotenv").config()
-const express = require('express');
-const route = require('./routes/route.js');
-const { default: mongoose } = require('mongoose')
-const multer = require('multer');;
-const app = express();
+require("dotenv").config();
+const app=require("./app");
+const { connectDatabase } = require("./config/database");
 
-const upload = multer();
-app.use(upload.any());
-app.use(express.json());
 
-mongoose.set('strictQuery', false);
-mongoose.connect(process.env.URL, {
-    useNewUrlParser: true
+process.on("uncaughtException",(err)=>{
+    console.log(`UncaughtError Occure ${err.message}`)
+    process.exit(1)
 })
-.then( () => console.log("MongoDb is connected"))
-.catch ( err => console.log(err) )
 
-app.use('/', route)
+connectDatabase();
 
 app.listen(process.env.PORT, function () {
-    console.log('Express app running on port ' + (process.env.PORT))
+  console.log("Express app running on port " + process.env.PORT);
 });

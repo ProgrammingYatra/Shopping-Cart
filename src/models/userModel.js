@@ -1,13 +1,41 @@
 const mongoose = require("mongoose");
+const validator=require("validator")
 
 const userSchema = new mongoose.Schema(
   {
-    fname: { type: String, required: true, trim: true },
-    lname: { type: String, required: true, trim: true },
-    email: { type: String, required: true, trim: true, unique: true },
-    profileImage: { type: String, required: true, trim: true },
-    phone: { type: String, required: true, unique: true, trim: true },
-    password: { type: String, required: true, trim: true },
+    fname: {
+      type: String,
+      required: [true, "Please Provide a First Name"],
+      trim: true,
+    },
+    lname: {
+      type: String,
+      required: [true, "Please Provide a Last Name"],
+      trim: true,
+    },
+    email: {
+      type: String,
+      required: [true, "Please Provide a Last Name"],
+      trim: true,
+      unique: true,
+      validate:[validator.isEmail,"Please Provide a Unique Email"]
+    },
+    profileImage: {
+      type: String,
+      required: [true, "Please Provide Profile Image"],
+      trim: true,
+    },
+    phone: {
+      type: String,
+      required: [true, "Please Provide Phone No"],
+      unique: true,
+      trim: true,
+    },
+    password: {
+      type: String,
+      required: [true, "Please Provide a Password"],
+      trim: true,
+    },
     address: {
       shipping: {
         street: { type: String, required: true, trim: true },

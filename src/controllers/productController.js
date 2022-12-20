@@ -2,7 +2,7 @@ const productModel = require("../models/productModel.js");
 const validation = require("../validation/validator");
 const aws = require("../Aws/aws.js");
 
-const createProduct = async function (req, res) {
+exports.createProduct = async function (req, res) {
   try {
     let data = req.body;
     let files = req.files;
@@ -137,7 +137,7 @@ const createProduct = async function (req, res) {
   }
 };
 
-const getProduct = async function (req, res) {
+exports.getProduct = async function (req, res) {
   try {
     let data = req.query;
     let conditions = { isDeleted: false };
@@ -278,7 +278,7 @@ const getProduct = async function (req, res) {
   }
 };
 
-const getProductsById = async (req, res) => {
+exports.getProductsById = async (req, res) => {
   try {
     let productId = req.params.productId;
 
@@ -308,7 +308,7 @@ const getProductsById = async (req, res) => {
   }
 };
 
-const updateProduct = async function (req, res) {
+exports.updateProduct = async function (req, res) {
   try {
     let data = req.body;
     let files = req.files;
@@ -453,7 +453,7 @@ const updateProduct = async function (req, res) {
   }
 };
 
-const deleteProduct = async function (req, res) {
+exports.deleteProduct = async function (req, res) {
   try {
     let productId = req.params.productId;
 
@@ -488,12 +488,4 @@ const deleteProduct = async function (req, res) {
     console.log("This is the error :", err.message);
     res.status(500).send({ msg: "Error", error: err.message });
   }
-};
-
-module.exports = {
-  createProduct,
-  getProduct,
-  getProductsById,
-  updateProduct,
-  deleteProduct,
 };

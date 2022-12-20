@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/userModel");
 const validation = require("../validation/validator");
 
-const authentication = (req, res, next) => {
+exports.authentication = (req, res, next) => {
   try {
     let bearerHeader = req.headers.authorization;
     if (typeof bearerHeader == "undefined")
@@ -25,7 +25,7 @@ const authentication = (req, res, next) => {
   }
 };
 
-const authorization = async (req, res, next) => {
+exports.authorization = async (req, res, next) => {
   try {
     let loggedInUser = req.decodedToken.userId;
     let loginUser;
@@ -57,5 +57,3 @@ const authorization = async (req, res, next) => {
     res.status(500).send({ status: false, error: err.message });
   }
 };
-
-module.exports = { authentication, authorization };
